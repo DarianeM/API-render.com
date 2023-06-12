@@ -23,7 +23,8 @@ from rest_framework_simplejwt.views import TokenVerifyView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    re_path(r'^api/sensores$', views.sensor_data_list),
+    path('api/sensores', views.sensor_data_list),
+    #re_path(r'^api/sensores$', views.sensor_data_list),
     re_path(r'^api/sensores/(?P<pk>[0-9]+)$', views.sensor_data_detail),
     re_path(r'^api/lecturas$', views.lectura_data_list),
     re_path(r'^api/lecturas/(?P<pk>[0-9]+)$', views.lectura_data_detail),
