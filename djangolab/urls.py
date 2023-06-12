@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include, re_path
+from django.urls import path, re_path
 from apirest import views
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView,)
 from rest_framework_simplejwt.views import TokenVerifyView
@@ -23,8 +23,6 @@ from rest_framework_simplejwt.views import TokenVerifyView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', include('apirest.urls'))
-    #path('api/sensores', views.sensor_data_list, name = 'sensor_data_list'),
     re_path(r'^api/sensores$', views.sensor_data_list),
     re_path(r'^api/sensores/(?P<pk>[0-9]+)$', views.sensor_data_detail),
     re_path(r'^api/lecturas$', views.lectura_data_list),
