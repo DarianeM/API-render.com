@@ -28,7 +28,7 @@ def sensor_data_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([AllowAny])
-def sensor_data_detail(request, pk=1):
+def sensor_data_detail(request, pk):
     try:
         sensor_data = Sensores.objects.get(pk=pk)
         if request.method == 'GET':
