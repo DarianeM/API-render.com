@@ -29,7 +29,7 @@ urlpatterns = [
     #re_path(r'^api/sensores/(?P<pk>[0-9]+)$', views.sensor_data_detail),
     path('api/lecturas', views.lectura_data_list),
     #re_path(r'^api/lecturas$', views.lectura_data_list),
-    path('api/lecturas/<int:pk>' views.lectura_data_detail),
+    path('api/lecturas/<int:pk>', views.lectura_data_detail),
     #re_path(r'^api/lecturas/(?P<pk>[0-9]+)$', views.lectura_data_detail),
     path('db/nuevo-jwt', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     #re_path(r'^db/nuevo-jwt', TokenObtainPairView.as_view(), name='token_obtain_pair'),
