@@ -7,7 +7,7 @@ class SensoresSerializer(serializers.ModelSerializer):
         model = Sensores
         fields = ('id', 'temperatura', 'peso', 'humedad',)
 
-    class LecturasSerializer(serializers.ModelSerializer):
-        class Meta:
-            model = Lecturas
-            fields = ('id', 'key', 'value', 'date_created',)
+class LecturasSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Lecturas
+        fields = ('id', 'key', 'value', 'date_created',)
