@@ -4,7 +4,7 @@ from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from apirest.models import Sensores,Lecturas
-from apirest.serializers import SensoresSerializer
+from apirest.serializers import SensoresSerializer, LecturasSerializer 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 
@@ -52,11 +52,11 @@ def sensor_data_detail(request, pk):
 def lectura_data_list(request):
     if request.method == 'GET':
         lectura_data = Lecturas.objects.all()
-        lectura_data_serializer = SensoresSerializer.LecturasSerializer(lectura_data, many=True)
+        lectura_data_serializer = LecturasSerializer(lectura_data, many=True)
         return JsonResponse(lectura_data_serializer.data, safe=False)
     elif request.method == 'POST':
         lectura_data = JSONParser().parse(request)
-        lectura_data_serializer = SensoresSerializer.LecturasSerializer(data=lectura_data)
+        lectura_data_serializer = LecturasSerializer(data=lectura_data)
         if lectura_data_serializer.is_valid():
             lectura_data_serializer.save()
             return JsonResponse(lectura_data_serializer.data, status=status.HTTP_201_CREATED)
@@ -68,11 +68,11 @@ def lectura_data_detail(request, pk):
     try:
         lectura_data = Lecturas.objects.get(pk=pk)
         if request.method == 'GET':
-            lectura_data_serializer = SensoresSerializer.LecturasSerializer(lectura_data)
+            lectura_data_serializer = LecturasSerializer(lectura_data)
             return JsonResponse(lectura_data_serializer.data)
         elif request.method == 'PUT':
             lectura_data = JSONParser().parse(request)
-            lectura_data_serializer = SensoresSerializer.LecturasSerializer(lectura_data, data=lectura_data)
+            lectura_data_serializer = LecturasSerializer(lectura_data, data=lectura_data)
             if lectura_data_serializer.is_valid():
                 lectura_data_serializer.save()
                 return JsonResponse(lectura_data_serializer.data)
