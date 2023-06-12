@@ -30,7 +30,7 @@ def sensor_data_list(request):
 @permission_classes([AllowAny])
 def sensor_data_detail(request, pk=1):
     try:
-        sensor_data = Sensores.objects.get(1)
+        sensor_data = Sensores.objects.get(pk=pk)
         if request.method == 'GET':
             sensor_data_serializer = SensoresSerializer(sensor_data)
             return JsonResponse(sensor_data_serializer.data)
