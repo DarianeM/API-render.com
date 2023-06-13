@@ -26,7 +26,7 @@ urlpatterns = [
     path('api/sensores', views.sensor_data_list),
     path('api/sensores/<int:pk>', views.sensor_data_detail),
     path('api/lecturas', views.lectura_data_list),
-    path('api/lecturas/<int:pk>', views.lectura_data_detail),
+    path('api/lecturas/pk<int:pk>', views.lectura_data_detail),
     path('db/nuevo-jwt', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('auth-jwt-refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
     path('auth-jwt-verify/', TokenVerifyView.as_view(), name='token_verify'),
