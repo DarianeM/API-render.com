@@ -68,7 +68,7 @@ def lectura_data_list(request):
 @permission_classes([AllowAny])
 def lectura_data_detail(request, pk):
     try:
-        lectura_data = Lecturas.objects.get(pk==1)
+        lectura_data = Lecturas.objects.get(pk=pk)
         if request.method == 'GET':
             lectura_data_serializer = LecturasSerializer(lectura_data)
             return JsonResponse(lectura_data_serializer.data)
