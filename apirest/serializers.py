@@ -10,4 +10,4 @@ class SensoresSerializer(serializers.ModelSerializer):
 class LecturasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Lecturas
-        fields = ('id', 'key', 'value', 'date_created',)
+        fields = ('id', 'key', 'value', 'date_created')
