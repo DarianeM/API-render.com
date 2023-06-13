@@ -10,4 +10,4 @@ class Lecturas(models.Model):
     key = models.TextField()
     value = models.FloatField()
     data_created = models.DateTimeField(auto_now_add=True)
-    data_updated = models.DateTimeField(auto_now=True)
+    #data_updated = models.DateTimeField(auto_now=True)

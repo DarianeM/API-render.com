@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, re_path
+from django.urls import path
 from apirest import views
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView,)
 from rest_framework_simplejwt.views import TokenVerifyView
@@ -24,17 +24,18 @@ from rest_framework_simplejwt.views import TokenVerifyView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/sensores', views.sensor_data_list),
-    #re_path(r'^api/sensores$', views.sensor_data_list),
     path('api/sensores/<int:pk>', views.sensor_data_detail),
-    #re_path(r'^api/sensores/(?P<pk>[0-9]+)$', views.sensor_data_detail),
     path('api/lecturas', views.lectura_data_list),
-    #re_path(r'^api/lecturas$', views.lectura_data_list),
     path('api/lecturas/<int:pk>', views.lectura_data_detail),
-    #re_path(r'^api/lecturas/(?P<pk>[0-9]+)$', views.lectura_data_detail),
     path('db/nuevo-jwt', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    #re_path(r'^db/nuevo-jwt', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('auth-jwt-refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    #re_path(r'^auth-jwt-refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
+    path('auth-jwt-refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
     path('auth-jwt-verify/', TokenVerifyView.as_view(), name='token_verify'),
-    #re_path(r'^auth-jwt-verify/', TokenVerifyView.as_view(), name='token_verify'), 
+     
+    #re_path(r'^api/sensores$', views.sensor_data_list),
+    #re_path(r'^api/sensores/(?P<pk>[0-9]+)$', views.sensor_data_detail),
+    #re_path(r'^api/lecturas$', views.lectura_data_list),
+    #re_path(r'^api/lecturas/(?P<pk>[0-9]+)$', views.lectura_data_detail),
+    #re_path(r'^db/nuevo-jwt', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    #re_path(r'^auth-jwt-refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    #re_path(r'^auth-jwt-verify/', TokenVerifyView.as_view(), name='token_verify'),
 ]
