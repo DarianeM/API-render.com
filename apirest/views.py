@@ -66,7 +66,7 @@ def lectura_data_list(request):
 
 @api_view(['GET', 'PUT', 'DELETE'])
 @permission_classes([AllowAny])
-def lectura_data_detail(request, pk):
+def lectura_data_detail(request, pk=1):
     try:
         lectura_data = Lecturas.objects.get(pk=pk)
         if request.method == 'GET':
