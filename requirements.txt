@@ -4,7 +4,7 @@ cffi==1.15.1
 cryptography==3.1.1
 distlib==0.3.6
 dj-database-url==2.0.0
-Django==1.18
+Django==3.2.1
 django-cors-headers==4.0.0
 djangorestframework==3.14.0
 djangorestframework-jwt==1.11.0
