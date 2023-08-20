@@ -1,6 +1,6 @@
 # API-render.com
 
-*GET
+## **GET**
 https://amst-lab-api.herokuapp.com/api/lecturas
 
 https://amst-lab-api.herokuapp.com/api/lecturas/
