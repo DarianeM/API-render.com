@@ -31,8 +31,6 @@ urlpatterns = [
     path('auth-jwt-refresh/', TokenRefreshView.as_view(), name='token_refresh'), 
     path('auth-jwt-verify/', TokenVerifyView.as_view(), name='token_verify'),
 
-    path('api/pruebas', views.prueba_data_list),
-    path('api/pruebas/<int:pk>', views.prueba_data_detail),
      
     #re_path(r'^api/sensores$', views.sensor_data_list),
     #re_path(r'^api/sensores/(?P<pk>[0-9]+)$', views.sensor_data_detail),
