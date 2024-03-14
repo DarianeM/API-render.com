@@ -12,7 +12,7 @@ class Lecturas(models.Model):
     data_created = models.DateTimeField(auto_now_add=True)
     #data_updated = models.DateTimeField(auto_now=True)
 
-class Prueba(models.Model):
+class Pruebas(models.Model):
     nombre = models.TextField()
     edad = models.TextField()
     direccion = models.TextField()
