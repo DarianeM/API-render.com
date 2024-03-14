@@ -5,8 +5,10 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 from apirest.models import Sensores
 from apirest.models import Lecturas
+from apirest.models import Pruebas
 from apirest.serializers import SensoresSerializer
-from apirest.serializers import LecturasSerializer 
+from apirest.serializers import LecturasSerializer
+from apirest.serializers import PruebasSerializer 
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import AllowAny
 
@@ -84,3 +86,41 @@ def lectura_data_detail(request, pk):
             return JsonResponse({'message': 'sensor data was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
     except Sensores.DoesNotExist:
         return JsonResponse({'message': 'The sensor data does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['GET', 'POST'])
+@permission_classes([AllowAny])
+def prueba_data_list(request):
+    if request.method == 'GET':
+        prueba_data = Pruebas.objects.all()
+        prueba_data_serializer = PruebasSerializer(prueba_data, many=True)
+        return JsonResponse(prueba_data_serializer.data, safe=False)
+    elif request.method == 'POST':
+        prueba_data = JSONParser().parse(request)
+        prueba_data_serializer = PruebasSerializer(data=prueba_data)
+        if prueba_data_serializer.is_valid():
+            prueba_data_serializer.save()
+            return JsonResponse(prueba_data_serializer.data, status=status.HTTP_201_CREATED)
+        return JsonResponse(prueba_data_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+
+@api_view(['GET', 'PUT', 'DELETE'])
+@permission_classes([AllowAny])
+def prueba_data_detail(request, pk):
+    try:
+        prueba_data = Pruebas.objects.get(pk=pk)
+        if request.method == 'GET':
+            prueba_data_serializer = PruebasSerializer(prueba_data)
+            return JsonResponse(prueba_data_serializer.data)
+        elif request.method == 'PUT':
+            prueba_data = JSONParser().parse(request)
+            prueba_data_serializer = PruebasSerializer(prueba_data, data=prueba_data)
+            if prueba_data_serializer.is_valid():
+                prueba_data_serializer.save()
+                return JsonResponse(prueba_data_serializer.data)
+            return JsonResponse(prueba_data_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        elif request.method == 'DELETE':
+            prueba_data.delete()
+            return JsonResponse({'message': 'user data was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+    except Pruebas.DoesNotExist:
+        return JsonResponse({'message': 'The user data does not exist'}, status=status.HTTP_404_NOT_FOUND)
